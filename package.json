@@ -1,0 +1,38 @@
+{
+  "name": "@litert/clifx",
+  "version": "0.1.0",
+  "description": "Toolset for CLI application.",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepare": "npm run rebuild",
+    "build": "tsc -p .",
+    "rebuild": "npm run clean && npm run lint && npm run build",
+    "test": "echo See directory sources/samples",
+    "clean": "rm -rf dist",
+    "lint": "tslint -p . -c tslint.json"
+  },
+  "keywords": [
+    "litert",
+    "lrt",
+    "cli"
+  ],
+  "author": "Angus.Fenying <fenying@litert.org> (https://fenying.net)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/litert/clifx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/litert/clifx/issues"
+  },
+  "homepage": "https://github.com/litert/clifx#readme",
+  "dependencies": {},
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "devDependencies": {
+    "@types/node": "^9.6.6"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}
