@@ -68,18 +68,9 @@ export function switchUser(user: string, group?: string): void {
     process.setuid(user);
 }
 
-export function redirectOutputToFile(file: string): void {
+export function writePIDToFile(file: string): void {
 
-    process.stdout.pipe($fs.createWriteStream(file, {
-        "flags": "a"
-    }));
-}
-
-export function redirectErrorToFile(file: string): void {
-
-    process.stderr.pipe($fs.createWriteStream(file, {
-        "flags": "a"
-    }));
+    $fs.writeFileSync(file, process.pid.toString());
 }
 
 export const STARTED_AT = Date.now() - process.uptime() * 1000;
@@ -87,6 +78,8 @@ export const STARTED_AT = Date.now() - process.uptime() * 1000;
 export interface App {
 
     main(args: string[]): Promise<void>;
+
+    onError(e: any): void;
 }
 
 export interface AppConstructor {
@@ -98,9 +91,5 @@ export function run(appClass: AppConstructor): void {
 
     let app = new appClass();
 
-    app.main(process.argv).catch((e) => {
-
-        // tslint:disable-next-line:no-console
-        console.error(e);
-    });
+    app.main(process.argv).catch((e) => app.onError.bind(app));
 }
