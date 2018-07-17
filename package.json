@@ -1,6 +1,6 @@
 {
   "name": "@litert/clifx",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Toolset for CLI application.",
   "main": "dist/index.js",
   "scripts": {

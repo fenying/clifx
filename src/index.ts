@@ -91,5 +91,5 @@ export function run(appClass: AppConstructor): void {
 
     let app = new appClass();
 
-    app.main(process.argv).catch((e) => app.onError.bind(app));
+    app.main(process.argv).catch(app.onError.bind(app));
 }
